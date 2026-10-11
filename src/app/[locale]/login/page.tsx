@@ -10,9 +10,15 @@ export default async function LoginPage() {
   const t = await getTranslations('login');
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
-      <div className="w-full max-w-sm rounded-lg border bg-white p-6 shadow-sm">
-        <h1 className="mb-4 text-xl font-semibold">{t('title')}</h1>
+    <div className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_top,#d9f3ef,transparent_55%)] p-4">
+      <div className="w-full max-w-sm rounded-3xl border border-slate-200 bg-white p-7 shadow-xl shadow-slate-900/[0.06]">
+        <div className="mb-6 flex items-center gap-3">
+          <span className="grid size-11 place-items-center rounded-2xl bg-teal-700 text-sm font-black text-white">ИХ</span>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-teal-700">Itgelt Khos Zam</p>
+            <h1 className="mt-1 text-xl font-bold tracking-tight text-slate-950">{t('title')}</h1>
+          </div>
+        </div>
         <LoginForm />
       </div>
     </div>

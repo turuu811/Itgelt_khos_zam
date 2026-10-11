@@ -38,7 +38,7 @@ export function TransactionForm({ accounts, categories, trips, drivers, defaultD
   const visibleCategories = categories.filter((c) => c.type === type);
 
   return (
-    <form action={action} className="max-w-xl space-y-4">
+    <form action={action} className="max-w-2xl space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
       {state.error ? <ErrorBanner>{te(state.error)}</ErrorBanner> : null}
 
       <div className="grid grid-cols-2 gap-3">
@@ -56,10 +56,10 @@ export function TransactionForm({ accounts, categories, trips, drivers, defaultD
         </Field>
       </div>
 
-      <div className="grid grid-cols-3 gap-3">
-        <div className="col-span-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="sm:col-span-2">
           <Field label={t('amount')} error={err('amount')}>
-            <input name="amount" inputMode="decimal" required defaultValue={v.amount ?? ''} className={inputClass} />
+            <input name="amount" type="number" min="0.01" step="0.01" inputMode="decimal" required defaultValue={v.amount ?? ''} className={inputClass} />
           </Field>
         </div>
         <Field label={t('currency')} error={err('currency')}>
@@ -77,7 +77,7 @@ export function TransactionForm({ accounts, categories, trips, drivers, defaultD
 
       {currency === 'CNY' ? (
         <Field label={t('fxRate')} error={err('fxRate')}>
-          <input name="fxRate" inputMode="decimal" required defaultValue={v.fxRate ?? ''} className={inputClass} />
+          <input name="fxRate" type="number" min="0.000001" step="0.000001" inputMode="decimal" required defaultValue={v.fxRate ?? ''} className={inputClass} />
           <span className="mt-1 block text-xs text-slate-500">{t('fxNote')}</span>
         </Field>
       ) : null}
@@ -143,11 +143,11 @@ export function TransactionForm({ accounts, categories, trips, drivers, defaultD
       ) : null}
 
       <Field label={t('counterparty')} error={err('counterparty')}>
-        <input name="counterparty" defaultValue={v.counterparty ?? ''} className={inputClass} />
+        <input name="counterparty" maxLength={200} defaultValue={v.counterparty ?? ''} className={inputClass} />
       </Field>
 
       <Field label={t('note')} error={err('note')}>
-        <textarea name="note" rows={3} defaultValue={v.note ?? ''} className={inputClass} />
+        <textarea name="note" rows={3} maxLength={1000} defaultValue={v.note ?? ''} className={inputClass} />
       </Field>
 
       <SubmitButton>{t('new')}</SubmitButton>

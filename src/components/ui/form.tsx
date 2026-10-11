@@ -1,27 +1,46 @@
-import type { ReactNode } from 'react';
+import { cloneElement, isValidElement, useId, type ReactNode } from 'react';
 
 export const inputClass =
-  'block w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-sm shadow-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500';
+  'block min-h-11 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm shadow-slate-900/[0.03] transition placeholder:text-slate-400 hover:border-slate-300 focus:border-teal-600 focus:outline-none focus:ring-4 focus:ring-teal-600/10 aria-[invalid=true]:border-red-400 aria-[invalid=true]:focus:ring-red-500/10 disabled:cursor-not-allowed disabled:bg-slate-50';
 
 export const primaryButtonClass =
-  'inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-700 disabled:opacity-60';
+  'inline-flex min-h-11 items-center justify-center rounded-xl bg-teal-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-800 active:translate-y-px disabled:cursor-wait disabled:opacity-60';
 
 export const secondaryButtonClass =
-  'inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100';
+  'inline-flex min-h-10 items-center justify-center rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50';
 
-export function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+export function Field({
+  label,
+  error,
+  hint,
+  children,
+}: {
+  label: string;
+  error?: string;
+  hint?: string;
+  children: ReactNode;
+}) {
+  const errorId = useId();
+  const control = isValidElement<{ 'aria-describedby'?: string; 'aria-invalid'?: boolean }>(children)
+    ? cloneElement(children, {
+        'aria-invalid': Boolean(error),
+        'aria-describedby': error ? errorId : undefined,
+      })
+    : children;
+
   return (
     <label className="block text-sm">
-      <span className="mb-1 block font-medium text-slate-700">{label}</span>
-      {children}
-      {error ? <span className="mt-1 block text-xs text-red-600">{error}</span> : null}
+      <span className="mb-1.5 block font-semibold text-slate-700">{label}</span>
+      {control}
+      {hint && !error ? <span className="mt-1.5 block text-xs leading-5 text-slate-500">{hint}</span> : null}
+      {error ? <span id={errorId} role="alert" className="mt-1.5 block text-xs font-medium text-red-700">{error}</span> : null}
     </label>
   );
 }
 
 export function ErrorBanner({ children }: { children: ReactNode }) {
   return (
-    <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+    <p role="alert" className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
       {children}
     </p>
   );

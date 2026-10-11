@@ -13,7 +13,7 @@ export function LoginForm() {
   const [state, action] = useActionState<FormState, FormData>(login, {});
 
   return (
-    <form action={action} className="space-y-4">
+    <form action={action} className="space-y-5">
       {state.error ? <ErrorBanner>{te(state.error)}</ErrorBanner> : null}
 
       <Field label={t('identifier')}>

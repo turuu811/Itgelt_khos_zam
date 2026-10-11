@@ -2,10 +2,29 @@
 
 html {
   font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: #f8fafc;
-  color: #0f172a;
+  background: #f4f7fb;
+  color: #132238;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: #b9e9e4;
+  color: #103a43;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid rgb(13 148 136 / 45%);
+  outline-offset: 2px;
 }

@@ -17,7 +17,7 @@ export function CargoForm({ customers }: { customers: { id: string; name: string
   const err = (key: string) => (fe[key] ? te(fe[key]) : undefined);
 
   return (
-    <form action={action} className="max-w-xl space-y-4">
+    <form action={action} className="max-w-2xl space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
       {state.error ? <ErrorBanner>{te(state.error)}</ErrorBanner> : null}
 
       <Field label={t('customer')} error={err('customerId')}>
@@ -34,23 +34,23 @@ export function CargoForm({ customers }: { customers: { id: string; name: string
       </Field>
 
       <Field label={t('description')} error={err('description')}>
-        <input name="description" defaultValue={v.description ?? ''} className={inputClass} />
+        <input name="description" maxLength={500} defaultValue={v.description ?? ''} className={inputClass} />
       </Field>
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Field label={t('quantity')} error={err('quantity')}>
-          <input name="quantity" type="number" min={1} defaultValue={v.quantity ?? '1'} required className={inputClass} />
+          <input name="quantity" type="number" min={1} max={100000} step={1} defaultValue={v.quantity ?? '1'} required className={inputClass} />
         </Field>
         <Field label={t('weightKg')} error={err('weightKg')}>
-          <input name="weightKg" inputMode="decimal" defaultValue={v.weightKg ?? ''} className={inputClass} />
+          <input name="weightKg" type="number" min={0} max={999999999.999} step="0.001" inputMode="decimal" defaultValue={v.weightKg ?? ''} className={inputClass} />
         </Field>
         <Field label={t('volumeM3')} error={err('volumeM3')}>
-          <input name="volumeM3" inputMode="decimal" defaultValue={v.volumeM3 ?? ''} className={inputClass} />
+          <input name="volumeM3" type="number" min={0} max={999999999.999} step="0.001" inputMode="decimal" defaultValue={v.volumeM3 ?? ''} className={inputClass} />
         </Field>
       </div>
 
       <Field label={t('note')} error={err('note')}>
-        <textarea name="note" rows={3} defaultValue={v.note ?? ''} className={inputClass} />
+        <textarea name="note" rows={3} maxLength={1000} defaultValue={v.note ?? ''} className={inputClass} />
       </Field>
 
       <SubmitButton>{t('new')}</SubmitButton>

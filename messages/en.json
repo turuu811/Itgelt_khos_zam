@@ -29,19 +29,34 @@
     "drivers": "Drivers"
   },
   "home": {
+    "eyebrow": "From Erenhot to Ulaanbaatar",
     "heroTitle": "Erenhot–Ulaanbaatar cargo transport",
-    "heroText": "From receiving the cargo to handing it over, every step is recorded and tracked in one place.",
+    "heroText": "Organize cross-border freight with confidence and keep each step clearly recorded, from receiving cargo to delivery.",
     "cta": "Get a quote",
-    "servicesTitle": "Services",
+    "routeFact": "Erenhot → Ulaanbaatar route",
+    "warehouseFact": "Warehouse receiving",
+    "trackingFact": "Status updates recorded",
+    "servicesEyebrow": "What we do",
+    "servicesTitle": "Freight services",
+    "servicesIntro": "We coordinate transport based on your cargo details, including its weight, dimensions, and delivery requirements.",
     "s1Title": "Cargo transport",
-    "s1Text": "We haul cargo from Erenhot to Ulaanbaatar.",
+    "s1Text": "We coordinate cargo transport from Erenhot to Ulaanbaatar with our contracted freight partners.",
     "s2Title": "Warehouse",
-    "s2Text": "We receive the cargo and store it until loading.",
+    "s2Text": "Cargo arriving in Erenhot is recorded and received, then organized for dispatch on a scheduled trip.",
     "s3Title": "Tracking",
-    "s3Text": "Every cargo status change is recorded with its history.",
+    "s3Text": "Key cargo milestones—from receiving and loading to arrival in Ulaanbaatar—are recorded.",
+    "s4Title": "Coordination",
+    "s4Text": "Cargo quantities, weight, and volume help us plan trip assignments and transport arrangements.",
+    "processEyebrow": "How it works",
+    "processTitle": "A clear journey, one step at a time",
+    "processText": "Send us a quote request and prepare your cargo details. We will follow up to discuss transport availability and terms.",
+    "step1": "Send your cargo details",
+    "step2": "Confirm transport and quote terms",
+    "step3": "Hand over cargo at the Erenhot receiving point",
+    "step4": "Receive your cargo in Ulaanbaatar",
     "contactTitle": "Contact",
-    "contactPhone": "Phone: +976 0000 0000",
-    "contactAddress": "Address: (add your address here)"
+    "contactText": "Need a freight quote?",
+    "contactHint": "Share the cargo type and estimated weight and volume. We will follow up about your quote request."
   },
   "login": {
     "title": "Log in",
@@ -51,6 +66,8 @@
   },
   "dashboard": {
     "title": "Dashboard",
+    "greeting": "Today's overview",
+    "updatedAt": "Date: {date}",
     "activeCargo": "Open cargo",
     "monthTitle": "This month (in MNT)",
     "income": "Income",
@@ -59,10 +76,25 @@
     "profit": "Profit",
     "byStatus": "By status",
     "latest": "Latest cargo",
-    "openTrips": "Open trips"
+    "openTrips": "Open trips",
+    "openTripsDescription": "Overview of trips that are not closed",
+    "statusCount": "{count} cargo items total",
+    "cargoCount": "{count} cargo items",
+    "financeNote": "Financial totals include active transactions only and are shown in MNT.",
+    "tripStatuses": {
+      "PLANNED": "Planned",
+      "IN_TRANSIT": "In transit",
+      "AT_BORDER": "At border",
+      "ARRIVED": "Arrived",
+      "CLOSED": "Closed"
+    }
   },
   "cargo": {
     "title": "Cargo",
+    "listDescription": "Registered cargo, current status, and transport details.",
+    "formDescription": "Enter cargo details to create a new record.",
+    "details": "Cargo details",
+    "pieces": "pieces",
     "new": "Register cargo",
     "trackCode": "Track code",
     "customer": "Customer",
@@ -95,14 +127,24 @@
   },
   "customers": {
     "title": "Customers",
+    "listDescription": "Customer directory and associated cargo records.",
     "add": "Add customer",
     "name": "Name",
     "contactPerson": "Contact person",
     "phone": "Phone",
-    "note": "Note"
+    "note": "Note",
+    "cargoCount": "Cargo count",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "finance": {
     "title": "Finance",
+    "transactions": "Transaction records",
+    "formDescription": "Record income, expenses, and payments to drivers.",
+    "noAccounts": "Add an account or cash box in settings first.",
+    "details": "Transaction details",
+    "createdBy": "Recorded by",
     "new": "Record transaction",
     "import": "Excel import",
     "export": "Export Excel",
@@ -171,6 +213,7 @@
   },
   "inquiries": {
     "title": "Quote inquiries",
+    "listDescription": "Quote requests submitted through the public website.",
     "date": "Date",
     "name": "Name",
     "phone": "Phone",
@@ -185,8 +228,15 @@
     }
   },
   "quote": {
+    "eyebrow": "Freight route: Erenhot → Ulaanbaatar",
     "title": "Get a quote",
-    "intro": "Leave your details and we will get back to you.",
+    "intro": "Share the essential cargo details. We will contact you to discuss transport availability and terms.",
+    "prepareTitle": "Details to prepare",
+    "prepareCargo": "Cargo type, packaging, and number of pieces",
+    "prepareSize": "Estimated weight, volume, and delivery requirements",
+    "prepareContact": "Contact person's name and phone number",
+    "routeNote": "We coordinate freight on this route with contracted transport partners.",
+    "sentTitle": "Your request has been sent",
     "name": "Name",
     "phone": "Phone",
     "cargoType": "Cargo type",
@@ -209,6 +259,13 @@
   },
   "trips": {
     "title": "Trips",
+    "listDescription": "Trips assigned to vehicles and drivers.",
+    "formDescription": "Assign a vehicle and driver to create a trip.",
+    "transactionTypes": {
+      "INCOME": "Income",
+      "EXPENSE": "Expense",
+      "DRIVER_PAYMENT": "Driver payment"
+    },
     "new": "Open a trip",
     "number": "Trip number",
     "vehicle": "Vehicle",
@@ -255,6 +312,7 @@
   },
   "adminUsers": {
     "title": "User management",
+    "listDescription": "Manage system access and user account status.",
     "createTitle": "Add user",
     "listTitle": "Registered users",
     "name": "Name",
@@ -291,6 +349,9 @@
   "adminAudit": {
     "title": "Audit log",
     "count": "{count} total records",
+    "date": "Date",
+    "user": "User",
+    "empty": "No audit records",
     "entity": "Entity",
     "action": "Action",
     "before": "Before",
@@ -300,6 +361,7 @@
   },
   "vehicles": {
     "title": "Vehicles",
+    "listDescription": "Vehicle capacity and document expiry overview.",
     "add": "Add vehicle",
     "plate": "Plate number",
     "type": "Type",
@@ -310,10 +372,15 @@
     "edit": "Edit",
     "save": "Save",
     "expired": "Expired",
-    "soon": "Expires soon"
+    "soon": "Expires soon",
+    "tripCount": "Trip count"
   },
   "drivers": {
     "title": "Drivers",
+    "listDescription": "Driver records, trip history, and payment history.",
+    "detailDescription": "Driver profile and history.",
+    "inactive": "Inactive",
+    "tripsCargoSuffix": "cargo items",
     "add": "Add driver",
     "name": "Name",
     "phone": "Phone",

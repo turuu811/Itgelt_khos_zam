@@ -17,19 +17,19 @@ export function VehicleForm() {
   const err = (key: string) => (fe[key] ? te(fe[key]) : undefined);
 
   return (
-    <form action={action} className="grid max-w-xl gap-3 rounded-lg border bg-white p-4">
-      <h2 className="font-medium">{t('add')}</h2>
+    <form action={action} className="grid max-w-2xl gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+      <h2 className="text-lg font-bold tracking-tight text-slate-950">{t('add')}</h2>
       {state.error ? <ErrorBanner>{te(state.error)}</ErrorBanner> : null}
 
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Field label={t('plate')} error={err('plateNumber')}>
-          <input name="plateNumber" required defaultValue={v.plateNumber ?? ''} className={inputClass} />
+          <input name="plateNumber" required maxLength={20} autoCapitalize="characters" defaultValue={v.plateNumber ?? ''} className={inputClass} />
         </Field>
         <Field label={t('type')} error={err('type')}>
-          <input name="type" defaultValue={v.type ?? ''} className={inputClass} />
+          <input name="type" maxLength={100} defaultValue={v.type ?? ''} className={inputClass} />
         </Field>
         <Field label={t('capacityKg')} error={err('capacityKg')}>
-          <input name="capacityKg" inputMode="numeric" defaultValue={v.capacityKg ?? ''} className={inputClass} />
+          <input name="capacityKg" type="number" min={0} max={999999} step={1} inputMode="numeric" defaultValue={v.capacityKg ?? ''} className={inputClass} />
         </Field>
       </div>
       <div className="grid grid-cols-2 gap-3">

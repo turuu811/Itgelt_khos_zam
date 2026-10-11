@@ -22,10 +22,10 @@ export function TripForm({ vehicles, drivers }: Props) {
   const err = (key: string) => (fe[key] ? te(fe[key]) : undefined);
 
   return (
-    <form action={action} className="max-w-xl space-y-4">
+    <form action={action} className="max-w-2xl space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
       {state.error ? <ErrorBanner>{te(state.error)}</ErrorBanner> : null}
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field label={t('vehicle')} error={err('vehicleId')}>
           <select name="vehicleId" required defaultValue={v.vehicleId ?? ''} className={inputClass}>
             <option value="" disabled>
@@ -52,17 +52,17 @@ export function TripForm({ vehicles, drivers }: Props) {
         </Field>
       </div>
 
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field label={t('departAt')} error={err('departAt')}>
-          <input name="departAt" type="date" defaultValue={v.departAt ?? ''} className={inputClass} />
+          <input name="departAt" type="date" max={v.arriveAt ?? undefined} defaultValue={v.departAt ?? ''} className={inputClass} />
         </Field>
         <Field label={t('arriveAt')} error={err('arriveAt')}>
-          <input name="arriveAt" type="date" defaultValue={v.arriveAt ?? ''} className={inputClass} />
+          <input name="arriveAt" type="date" min={v.departAt ?? undefined} defaultValue={v.arriveAt ?? ''} className={inputClass} />
         </Field>
       </div>
 
       <Field label={t('note')} error={err('note')}>
-        <textarea name="note" rows={3} defaultValue={v.note ?? ''} className={inputClass} />
+        <textarea name="note" rows={3} maxLength={1000} defaultValue={v.note ?? ''} className={inputClass} />
       </Field>
 
       <SubmitButton>{t('new')}</SubmitButton>

@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+html {
+  font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+}
+
+body {
+  background: #f8fafc;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+}

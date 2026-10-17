@@ -49,7 +49,7 @@ export default async function CargoDetailsPage({
             <div><dt className="text-slate-500">{t('volumeM3')}</dt><dd className="mt-1 font-semibold">{cargo.volumeM3?.toString() ?? '—'}</dd></div>
             <div><dt className="text-slate-500">{t('trip')}</dt><dd className="mt-1 font-semibold">{cargo.trip?.tripNumber ?? '—'}</dd></div>
           </dl>
-          {cargo.description ? <p className="rounded-xl bg-slate-50 p-3 text-sm text-slate-700">{cargo.description}</p> : null}
+          {cargo.containerInfo ? <p className="rounded-xl bg-slate-50 p-3 text-sm text-slate-700"><span className="font-semibold">{t('containerInfo')}:</span> {cargo.containerInfo}</p> : null}
           {cargo.note ? <p className="text-sm text-slate-500">{cargo.note}</p> : null}
           {can(user.role, 'cargo:status') ? (
             <form action={updateCargoStatus} className="space-y-4 border-t border-slate-100 pt-5">

@@ -33,7 +33,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
           select: {
             id: true,
             trackCode: true,
-            description: true,
+            containerInfo: true,
             status: true,
             receivedAt: true,
             customer: { select: { name: true } },
@@ -111,7 +111,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
                   <article key={cargo.id} className="flex items-center justify-between gap-3 px-5 py-4">
                     <div className="min-w-0">
                       <p className="truncate text-sm font-semibold text-slate-900">{cargo.trackCode}</p>
-                      <p className="mt-1 truncate text-xs text-slate-500">{cargo.customer.name}{cargo.description ? ` · ${cargo.description}` : ''}</p>
+                      <p className="mt-1 truncate text-xs text-slate-500">{cargo.customer.name}{cargo.containerInfo ? ` · ${cargo.containerInfo}` : ''}</p>
                     </div>
                     <div className="shrink-0 text-right">
                       <span className="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">{ts(cargo.status)}</span>

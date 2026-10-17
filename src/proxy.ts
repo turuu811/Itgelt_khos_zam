@@ -8,7 +8,7 @@ import { SESSION_COOKIE } from './lib/session-constants';
 
 const handleI18n = createMiddleware(routing);
 
-const PROTECTED = /^\/(mn|en)\/(dashboard|cargo|customers|finance|inquiries|trips|vehicles|drivers|reports|import|admin)(\/|$)/;
+const PROTECTED = /^\/(mn|en)\/(dashboard|cargo|customers|finance|inquiries|trips|vehicles|git-fees|drivers|reports|import|admin)(\/|$)/;
 
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

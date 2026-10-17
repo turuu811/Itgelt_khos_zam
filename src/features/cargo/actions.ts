@@ -16,7 +16,7 @@ import { isCargoStatus } from './constants';
 
 const createSchema = z.object({
   customerId: z.string().min(1, 'required'),
-  description: optText(500),
+  containerInfo: z.string().trim().max(11, 'invalid').regex(/^(?:[A-Za-z]{4}\d{7})?$/, 'invalid').transform((value) => value.toUpperCase()),
   quantity: z.coerce.number().int('invalid').min(1, 'invalid').max(100000, 'invalid'),
   weightKg: optDecimal,
   volumeM3: optDecimal,
@@ -41,11 +41,16 @@ export async function createCargo(_prev: FormState, formData: FormData): Promise
   for (let attempt = 0; attempt < 3 && !cargoId; attempt++) {
     try {
       const cargo = await db.$transaction(async (tx) => {
+        const recent = await tx.cargo.findMany({
+          take: 5,
+          orderBy: { createdAt: 'desc' },
+          select: { trackCode: true },
+        });
         const created = await tx.cargo.create({
           data: {
-            trackCode: generateTrackCode(),
+            trackCode: generateTrackCode(recent.map((item) => item.trackCode)),
             customerId: customer.id,
-            description: data.description || null,
+            containerInfo: data.containerInfo || null,
             quantity: data.quantity,
             weightKg: data.weightKg || null,
             volumeM3: data.volumeM3 || null,

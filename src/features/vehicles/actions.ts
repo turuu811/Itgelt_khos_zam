@@ -18,6 +18,7 @@ const createSchema = z.object({
   plateNumber: z.string().trim().min(1, 'required').max(20, 'invalid'),
   type: optText(100),
   capacityKg: capacity,
+  lastOilChangeAt: dateOrEmpty,
   insuranceExpiresAt: dateOrEmpty,
   inspectionExpiresAt: dateOrEmpty,
 });
@@ -41,6 +42,7 @@ export async function createVehicle(_prev: FormState, formData: FormData): Promi
         plateNumber: normalizePlate(d.plateNumber),
         type: d.type || null,
         capacityKg: d.capacityKg ? Number(d.capacityKg) : null,
+        lastOilChangeAt: d.lastOilChangeAt ? localDateToDate(d.lastOilChangeAt) : null,
         insuranceExpiresAt: d.insuranceExpiresAt ? localDateToDate(d.insuranceExpiresAt) : null,
         inspectionExpiresAt: d.inspectionExpiresAt ? localDateToDate(d.inspectionExpiresAt) : null,
       },
@@ -62,13 +64,11 @@ export async function updateVehicle(formData: FormData) {
   if (!user || !can(user.role, 'trip:write')) throw new Error('FORBIDDEN');
 
   const id = String(formData.get('id') ?? '');
-  const type = String(formData.get('type') ?? '').trim().slice(0, 100);
-  const capacityKg = String(formData.get('capacityKg') ?? '').trim();
+  const lastOilChange = String(formData.get('lastOilChangeAt') ?? '');
   const insurance = String(formData.get('insuranceExpiresAt') ?? '');
   const inspection = String(formData.get('inspectionExpiresAt') ?? '');
-  const isActive = formData.get('isActive') === 'on';
   if (!id) return;
-  if (capacityKg && !/^\d{1,6}$/.test(capacityKg)) return;
+  if ([lastOilChange, insurance, inspection].some((value) => value && !/^\d{4}-\d{2}-\d{2}$/.test(value))) return;
 
   const before = await db.vehicle.findUnique({ where: { id } });
   if (!before) return;
@@ -76,11 +76,9 @@ export async function updateVehicle(formData: FormData) {
   const after = await db.vehicle.update({
     where: { id },
     data: {
-      type: type || null,
-      capacityKg: capacityKg ? Number(capacityKg) : null,
+      lastOilChangeAt: lastOilChange ? localDateToDate(lastOilChange) : null,
       insuranceExpiresAt: insurance ? localDateToDate(insurance) : null,
       inspectionExpiresAt: inspection ? localDateToDate(inspection) : null,
-      isActive,
     },
   });
   await writeAudit(db, { userId: user.id, action: 'vehicle.update', entity: 'Vehicle', entityId: id, before, after });

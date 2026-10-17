@@ -26,6 +26,7 @@
     "audit": "Хяналтын лог",
     "trips": "Рейс",
     "vehicles": "Машин",
+    "gitFees": "ГИТ хураамж",
     "drivers": "Жолооч"
   },
   "home": {
@@ -99,7 +100,8 @@
     "trackCode": "Track код",
     "customer": "Харилцагч",
     "selectCustomer": "Сонгох",
-    "description": "Тайлбар",
+    "containerInfo": "Чингэлэг мэдээлэл",
+    "containerInfoHint": "4 том англи үсэг, дараа нь 7 цифр. Жишээ: ABCD1234567",
     "quantity": "Тоо",
     "weightKg": "Жин (кг)",
     "volumeM3": "Эзлэхүүн (м³)",
@@ -136,7 +138,9 @@
     "cargoCount": "Ачааны тоо",
     "status": "Төлөв",
     "active": "Идэвхтэй",
-    "inactive": "Идэвхгүй"
+    "inactive": "Идэвхгүй",
+    "activate": "Идэвхжүүлэх",
+    "deactivate": "Идэвхгүй болгох"
   },
   "finance": {
     "title": "Санхүү",
@@ -366,6 +370,7 @@
     "plate": "Улсын дугаар",
     "type": "Төрөл",
     "capacityKg": "Даац (кг)",
+    "lastOilChangeAt": "Тос сольсон огноо",
     "insuranceExpiresAt": "Даатгал дуусах",
     "inspectionExpiresAt": "Үзлэг дуусах",
     "active": "Идэвхтэй",
@@ -374,6 +379,36 @@
     "expired": "Дууссан",
     "soon": "Удахгүй дуусна",
     "tripCount": "Рейсийн тоо"
+  },
+  "gitFees": {
+    "title": "ГИТ хураамж, машины дугаар",
+    "description": "Сарын хураамжийн орлого, төлбөр болон машины дугаар олголтыг хянана.",
+    "summary": "Сарын нэгтгэл",
+    "recordedTotal": "Бүртгэсэн хураамж",
+    "paidTotal": "Төлөгдсөн орлого",
+    "unpaidCount": "Төлөөгүй машин",
+    "add": "Сарын бүртгэл нэмэх",
+    "period": "Жил, сар",
+    "vehicle": "Машин",
+    "customer": "Харилцагч",
+    "selectVehicle": "Машин сонгох",
+    "selectCustomer": "Харилцагч сонгох",
+    "amount": "Хураамж (₮)",
+    "paid": "Төлсөн",
+    "unpaid": "Төлөөгүй",
+    "numberIssued": "Дугаар олгосон",
+    "numberNotIssued": "Дугаар олгоогүй",
+    "paymentStatus": "Төлбөрийн төлөв",
+    "numberStatus": "Дугаар олголт",
+    "search": "Хайлт",
+    "searchHint": "Машины дугаар эсвэл харилцагч",
+    "records": "Сарын бүртгэлүүд",
+    "empty": "Шүүлтэд тохирох ГИТ бүртгэл алга.",
+    "created": "ГИТ бүртгэл нэмэгдлээ.",
+    "saved": "ГИТ бүртгэл шинэчлэгдлээ.",
+    "duplicate": "Энэ машин, сард бүртгэл аль хэдийн байна.",
+    "invalid": "Оруулсан мэдээллээ шалгана уу.",
+    "forbidden": "Энэ үйлдэлд эрх хүрэхгүй."
   },
   "drivers": {
     "title": "Жолооч",

@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { db } from '@/lib/db';
 import { requirePermission } from '@/lib/guards';
-import { createCustomer } from '@/features/customers/actions';
+import { createCustomer, toggleCustomerStatus } from '@/features/customers/actions';
 import { Field, inputClass, primaryButtonClass } from '@/components/ui/form';
 import { PageTitle } from '@/components/ui/page-title';
 
@@ -45,7 +45,17 @@ export default async function CustomersPage({ params }: { params: Promise<{ loca
                     <td className="px-5 py-4 text-slate-600">{customer.contactPerson ?? '—'}</td>
                     <td className="px-5 py-4 text-slate-600">{customer.phone ?? '—'}</td>
                     <td className="px-5 py-4 text-slate-600">{customer._count.cargo}</td>
-                    <td className="px-5 py-4"><span className={`rounded-full px-2.5 py-1 text-xs font-medium ${customer.isActive ? 'bg-emerald-50 text-emerald-800' : 'bg-slate-100 text-slate-500'}`}>{customer.isActive ? t('active') : t('inactive')}</span></td>
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-3">
+                        <span className={`rounded-full px-2.5 py-1 text-xs font-medium ${customer.isActive ? 'bg-emerald-50 text-emerald-800' : 'bg-slate-100 text-slate-500'}`}>{customer.isActive ? t('active') : t('inactive')}</span>
+                        {user.role === 'ADMIN' || user.role === 'MANAGER' ? (
+                          <form action={toggleCustomerStatus}>
+                            <input type="hidden" name="customerId" value={customer.id} />
+                            <button type="submit" className="text-xs font-semibold text-teal-800 hover:underline">{customer.isActive ? t('deactivate') : t('activate')}</button>
+                          </form>
+                        ) : null}
+                      </div>
+                    </td>
                   </tr>
                 ))}
               </tbody>

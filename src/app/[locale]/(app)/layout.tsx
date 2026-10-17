@@ -14,6 +14,7 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
     { href: '/customers', label: t('customers'), permission: 'customer:read' },
     { href: '/trips', label: t('trips'), permission: 'trip:read' },
     { href: '/vehicles', label: t('vehicles'), permission: 'trip:read' },
+    { href: '/git-fees', label: t('gitFees'), permission: 'trip:read' },
     { href: '/drivers', label: t('drivers'), permission: 'trip:read' },
     { href: '/finance', label: t('finance'), permission: 'finance:read' },
     { href: '/reports', label: t('reports'), permission: 'report:read' },

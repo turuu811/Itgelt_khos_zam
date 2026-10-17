@@ -27,3 +27,28 @@ export async function createCustomer(formData: FormData) {
 
   revalidatePath('/', 'layout');
 }
+
+export async function toggleCustomerStatus(formData: FormData) {
+  const user = await getCurrentUser();
+  if (!user || !can(user.role, 'customer:write')) throw new Error('FORBIDDEN');
+
+  const id = text(formData, 'customerId', 64);
+  if (!id) return;
+
+  await db.$transaction(async (tx) => {
+    const before = await tx.customer.findUnique({ where: { id }, select: { id: true, isActive: true } });
+    if (!before) return;
+
+    const after = await tx.customer.update({ where: { id }, data: { isActive: !before.isActive }, select: { id: true, isActive: true } });
+    await writeAudit(tx, {
+      userId: user.id,
+      action: after.isActive ? 'customer.activate' : 'customer.deactivate',
+      entity: 'Customer',
+      entityId: id,
+      before,
+      after,
+    });
+  });
+
+  revalidatePath('/', 'layout');
+}

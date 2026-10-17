@@ -15,7 +15,7 @@ export default async function CargoPage({ params }: { params: Promise<{ locale: 
     take: 100,
     orderBy: { receivedAt: 'desc' },
     select: {
-      id: true, trackCode: true, description: true, quantity: true, status: true, receivedAt: true,
+      id: true, trackCode: true, containerInfo: true, quantity: true, status: true, receivedAt: true,
       customer: { select: { name: true } },
       trip: { select: { tripNumber: true } },
     },
@@ -35,14 +35,14 @@ export default async function CargoPage({ params }: { params: Promise<{ locale: 
           <div className="overflow-x-auto">
             <table className="w-full min-w-[720px] text-left text-sm">
               <thead className="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
-                <tr>{[t('trackCode'), t('customer'), t('description'), t('status'), t('receivedAt'), t('trip')].map((label) => <th key={label} className="px-5 py-3 font-semibold">{label}</th>)}</tr>
+                <tr>{[t('trackCode'), t('customer'), t('containerInfo'), t('status'), t('receivedAt'), t('trip')].map((label) => <th key={label} className="px-5 py-3 font-semibold">{label}</th>)}</tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {cargo.map((item) => (
                   <tr key={item.id} className="transition hover:bg-slate-50">
                     <td className="px-5 py-4"><Link href={`/cargo/${item.id}`} className="font-semibold text-teal-800 hover:underline">{item.trackCode}</Link></td>
                     <td className="px-5 py-4 text-slate-700">{item.customer.name}</td>
-                    <td className="max-w-56 truncate px-5 py-4 text-slate-500">{item.description || `${item.quantity} ${t('pieces')}`}</td>
+                    <td className="max-w-56 truncate px-5 py-4 text-slate-500">{item.containerInfo || `${item.quantity} ${t('pieces')}`}</td>
                     <td className="px-5 py-4"><span className="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700">{ts(item.status)}</span></td>
                     <td className="px-5 py-4 text-slate-500">{formatDate(item.receivedAt)}</td>
                     <td className="px-5 py-4 text-slate-500">{item.trip?.tripNumber ?? '—'}</td>

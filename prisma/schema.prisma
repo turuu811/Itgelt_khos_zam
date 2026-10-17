@@ -114,6 +114,7 @@ model Customer {
 
   cargo Cargo[]
   users User[]
+  gitFeeRecords GitFeeRecord[]
 }
 
 // ───────────── Машин, жолооч, рейс ─────────────
@@ -123,6 +124,7 @@ model Vehicle {
   plateNumber         String    @unique
   type                String?
   capacityKg          Int?
+  lastOilChangeAt     DateTime?
   insuranceExpiresAt  DateTime?
   inspectionExpiresAt DateTime?
   isActive            Boolean   @default(true)
@@ -130,6 +132,28 @@ model Vehicle {
   updatedAt           DateTime  @updatedAt
 
   trips Trip[]
+  gitFeeRecords GitFeeRecord[]
+}
+
+model GitFeeRecord {
+  id          String   @id @default(cuid())
+  year        Int
+  month       Int
+  amountMinor BigInt
+  isPaid      Boolean  @default(false)
+  numberIssued Boolean @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  customerId String
+  customer   Customer @relation(fields: [customerId], references: [id])
+
+  @@unique([vehicleId, year, month])
+  @@index([year, month])
+  @@index([customerId])
+  @@index([isPaid, year, month])
 }
 
 // Жолооч системд нэвтэрдэггүй, зөвхөн бүртгэлийн объект.
@@ -174,7 +198,7 @@ model Trip {
 model Cargo {
   id          String      @id @default(cuid())
   trackCode   String      @unique
-  description String?
+  containerInfo String?     @map("description")
   quantity    Int         @default(1)
   weightKg    Decimal?    @db.Decimal(12, 3)
   volumeM3    Decimal?    @db.Decimal(12, 3)

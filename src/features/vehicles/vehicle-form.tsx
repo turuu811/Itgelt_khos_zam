@@ -33,6 +33,9 @@ export function VehicleForm() {
         </Field>
       </div>
       <div className="grid grid-cols-2 gap-3">
+        <Field label={t('lastOilChangeAt')} error={err('lastOilChangeAt')}>
+          <input name="lastOilChangeAt" type="date" defaultValue={v.lastOilChangeAt ?? ''} className={inputClass} />
+        </Field>
         <Field label={t('insuranceExpiresAt')} error={err('insuranceExpiresAt')}>
           <input name="insuranceExpiresAt" type="date" defaultValue={v.insuranceExpiresAt ?? ''} className={inputClass} />
         </Field>

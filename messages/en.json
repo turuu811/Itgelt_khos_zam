@@ -26,6 +26,7 @@
     "audit": "Audit log",
     "trips": "Trips",
     "vehicles": "Vehicles",
+    "gitFees": "GIT fees",
     "drivers": "Drivers"
   },
   "home": {
@@ -99,7 +100,8 @@
     "trackCode": "Track code",
     "customer": "Customer",
     "selectCustomer": "Select",
-    "description": "Description",
+    "containerInfo": "Container information",
+    "containerInfoHint": "4 uppercase English letters followed by 7 digits. Example: ABCD1234567",
     "quantity": "Quantity",
     "weightKg": "Weight (kg)",
     "volumeM3": "Volume (m³)",
@@ -136,7 +138,9 @@
     "cargoCount": "Cargo count",
     "status": "Status",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
   },
   "finance": {
     "title": "Finance",
@@ -366,6 +370,7 @@
     "plate": "Plate number",
     "type": "Type",
     "capacityKg": "Capacity (kg)",
+    "lastOilChangeAt": "Last oil change",
     "insuranceExpiresAt": "Insurance expires",
     "inspectionExpiresAt": "Inspection expires",
     "active": "Active",
@@ -374,6 +379,36 @@
     "expired": "Expired",
     "soon": "Expires soon",
     "tripCount": "Trip count"
+  },
+  "gitFees": {
+    "title": "GIT fees and vehicle numbers",
+    "description": "Track monthly fee income, payment status, and vehicle number issuance.",
+    "summary": "Monthly summary",
+    "recordedTotal": "Recorded fees",
+    "paidTotal": "Paid income",
+    "unpaidCount": "Unpaid vehicles",
+    "add": "Add monthly record",
+    "period": "Year and month",
+    "vehicle": "Vehicle",
+    "customer": "Customer",
+    "selectVehicle": "Select vehicle",
+    "selectCustomer": "Select customer",
+    "amount": "Fee (MNT)",
+    "paid": "Paid",
+    "unpaid": "Unpaid",
+    "numberIssued": "Number issued",
+    "numberNotIssued": "Number not issued",
+    "paymentStatus": "Payment status",
+    "numberStatus": "Number issuance",
+    "search": "Search",
+    "searchHint": "Plate number or customer",
+    "records": "Monthly records",
+    "empty": "No GIT records match these filters.",
+    "created": "GIT record added.",
+    "saved": "GIT record updated.",
+    "duplicate": "A record already exists for this vehicle and month.",
+    "invalid": "Check the entered information.",
+    "forbidden": "You do not have permission to perform this action."
   },
   "drivers": {
     "title": "Drivers",

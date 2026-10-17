@@ -1,16 +1,16 @@
-import { randomInt } from 'node:crypto';
 import { todayLocal } from '@/lib/dates';
 
-// Төөрөгдөх тэмдэгт (0/O, 1/I) байхгүй
-const ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-
-// Жишээ: IHZ-260921-K7M2P
-export function generateTrackCode(): string {
+export function generateTrackCode(recentCodes: string[], localDate = todayLocal()): string {
   const prefix = (process.env.TRACK_PREFIX ?? 'IHZ').toUpperCase();
-  const yymmdd = todayLocal().replaceAll('-', '').slice(2);
+  const yymmdd = localDate.replaceAll('-', '').slice(2);
+  const start = `${prefix}-${yymmdd}-`;
+  const lastSequence = recentCodes.reduce((maximum, code) => {
+    if (!code.startsWith(start)) return maximum;
+    const suffix = code.slice(start.length);
+    return /^\d{5}$/.test(suffix) ? Math.max(maximum, Number(suffix)) : maximum;
+  }, 0);
+  const sequence = lastSequence + 1;
+  if (sequence > 99_999) throw new Error('TRACK_CODE_SEQUENCE_EXHAUSTED');
 
-  let suffix = '';
-  for (let i = 0; i < 5; i++) suffix += ALPHABET[randomInt(ALPHABET.length)];
-
-  return `${prefix}-${yymmdd}-${suffix}`;
+  return `${start}${String(sequence).padStart(5, '0')}`;
 }

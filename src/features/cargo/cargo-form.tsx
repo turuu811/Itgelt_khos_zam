@@ -33,9 +33,10 @@ export function CargoForm({ customers }: { customers: { id: string; name: string
         </select>
       </Field>
 
-      <Field label={t('description')} error={err('description')}>
-        <input name="description" maxLength={500} defaultValue={v.description ?? ''} className={inputClass} />
+      <Field label={t('containerInfo')} error={err('containerInfo')}>
+        <input name="containerInfo" type="text" maxLength={11} pattern="[A-Za-z]{4}[0-9]{7}" autoCapitalize="characters" placeholder="ABCD1234567" defaultValue={v.containerInfo ?? ''} className={inputClass} />
       </Field>
+      <p className="-mt-3 text-xs text-slate-500">{t('containerInfoHint')}</p>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         <Field label={t('quantity')} error={err('quantity')}>
